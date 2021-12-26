@@ -68,6 +68,14 @@ export class Logic extends next2d.fw.Model
          * @public
          */
         this.moveDisplayObject = null;
+
+        /**
+         * @description ピースの移動を制御
+         * @type {boolean}
+         * @default false
+         * @public
+         */
+        this.lock = false;
     }
 
     /**
@@ -84,7 +92,9 @@ export class Logic extends next2d.fw.Model
         piece.addEventListener(MouseEvent.MOUSE_DOWN, (event) =>
         {
             const target = event.currentTarget;
+
             this.moveDisplayObject = target;
+            this.lock = false;
 
             const parent = target.parent;
             parent.setChildIndex(target, parent.numChildren - 1);
@@ -92,13 +102,16 @@ export class Logic extends next2d.fw.Model
 
         piece.addEventListener(MouseEvent.MOUSE_UP, () =>
         {
+            this.lock = false;
             this.moveDisplayObject = null;
         });
 
         piece.addEventListener(MouseEvent.ROLL_OVER, (event) =>
         {
             const target = event.currentTarget;
+
             if (this.moveDisplayObject
+                && !this.lock
                 && (!target.alpha
                     || this.moveDisplayObject.constructor === target.constructor)
             ) {
@@ -111,6 +124,7 @@ export class Logic extends next2d.fw.Model
                             const { Tween } = next2d.ui;
                             const { Event } = next2d.events;
 
+                            this.lock = true;
                             if (target.alpha) {
 
                                 const job = Tween.add(this.moveDisplayObject,
@@ -143,12 +157,20 @@ export class Logic extends next2d.fw.Model
                                     0, 0.05
                                 );
 
+                                job.addEventListener(Event.COMPLETE, () =>
+                                {
+                                    this.lock = false;
+                                });
+
                                 target.x = this.moveDisplayObject.x;
                                 target.y = this.moveDisplayObject.y;
 
                                 job.start();
 
                             }
+
+                            // reset
+                            this.moveDisplayObject = null;
                         }
                         break;
 
@@ -156,8 +178,10 @@ export class Logic extends next2d.fw.Model
                         break;
                 }
 
-                // reset
-                this.moveDisplayObject = null;
+            } else {
+
+                this.lock = true;
+
             }
         });
     }
@@ -218,6 +242,10 @@ export class Logic extends next2d.fw.Model
 
             job.start();
 
+        } else {
+
+            this.lock = false;
+
         }
 
         parent.removeChild(target);
@@ -244,6 +272,8 @@ export class Logic extends next2d.fw.Model
         scope.context.view.score.text = `${scope.score}`;
 
         parent.removeChild(this.moveDisplayObject);
+
+        this.lock = false;
     }
 
     /**
@@ -284,14 +314,15 @@ export class Logic extends next2d.fw.Model
     startTimer (content)
     {
         // 60秒で終了するよう設定
-        const width = content.width;
-        this.maxX   = content.bar.x;
+        const width    = content.bar.width;
+        this.maxX      = content.bar.x;
         this.subNumber = width / this.config.game.timeLimit;
 
         // タイマースタート
         const timerId = setInterval(function ()
         {
             content.bar.x -= this.subNumber;
+
             if (Math.abs(content.bar.x) > width) {
 
                 // ゲーム終了
@@ -303,6 +334,7 @@ export class Logic extends next2d.fw.Model
                 );
 
             }
+
         }.bind(this), 1000);
     }
 
@@ -314,6 +346,7 @@ export class Logic extends next2d.fw.Model
     recoveryTimeBar (number)
     {
         const bar = this.context.view.timer.bar;
+
         bar.x += this.subNumber * number;
         bar.x = Math.min(bar.x, this.maxX);
     }
@@ -325,9 +358,10 @@ export class Logic extends next2d.fw.Model
      */
     setLastPiece (piece)
     {
-        piece.setLocalVariable("space", true);
-        piece.alpha = 0;
+        piece.alpha      = 0;
         piece.buttonMode = false;
+
+        // remove event
         piece.removeAllEventListener(MouseEvent.MOUSE_DOWN);
         piece.removeAllEventListener(MouseEvent.MOUSE_UP);
     }
