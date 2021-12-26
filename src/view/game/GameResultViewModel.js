@@ -29,13 +29,14 @@ export class GameResultViewModel extends next2d.fw.ViewModel
             textFormat.font  = "Arial";
             textFormat.size  = 40;
             textFormat.bold  = true;
-            textFormat.color = "#ffffff";
+            textFormat.color = "#7EA1C4";
 
             const textField = new TextField();
             textField.defaultTextFormat = textFormat;
-            textField.autoSize  = TextFieldAutoSize.CENTER;
-            textField.thickness = 3;
-            textField.text      = "Score";
+            textField.autoSize          = TextFieldAutoSize.CENTER;
+            textField.thickness         = 3;
+            textField.thicknessColor    = "#1B365C";
+            textField.text              = "Score";
 
             textField.x = (this.config.stage.width  - textField.width)  / 2;
             textField.y = 80;
@@ -59,14 +60,14 @@ export class GameResultViewModel extends next2d.fw.ViewModel
                     textFormat.font  = "Arial";
                     textFormat.size  = 40;
                     textFormat.bold  = true;
-                    textFormat.color = "#ffffff";
+                    textFormat.color = "#7EA1C4";
 
                     const textField = new TextField();
                     textField.defaultTextFormat = textFormat;
-
-                    textField.autoSize  = TextFieldAutoSize.CENTER;
-                    textField.thickness = 3;
-                    textField.text      = this.query.get("score");
+                    textField.autoSize          = TextFieldAutoSize.CENTER;
+                    textField.thickness         = 3;
+                    textField.thicknessColor    = "#1B365C";
+                    textField.text              = this.query.get("score");
 
                     textField.x = (this.config.stage.width  - textField.width)  / 2;
                     textField.y = 180;
@@ -87,14 +88,14 @@ export class GameResultViewModel extends next2d.fw.ViewModel
                     textFormat.font  = "Arial";
                     textFormat.size  = 20;
                     textFormat.bold  = true;
-                    textFormat.color = "#ffffff";
+                    textFormat.color = "#7EA1C4";
 
                     const textField = new TextField();
                     textField.defaultTextFormat = textFormat;
-
-                    textField.autoSize  = TextFieldAutoSize.CENTER;
-                    textField.thickness = 3;
-                    textField.text      = "Back to Home";
+                    textField.autoSize          = TextFieldAutoSize.CENTER;
+                    textField.thickness         = 3;
+                    textField.thicknessColor    = "#1B365C";
+                    textField.text              = "Back to Home";
 
                     textField.x = (this.config.stage.width  - textField.width)  / 2;
                     textField.y = 300;

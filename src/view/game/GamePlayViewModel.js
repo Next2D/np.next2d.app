@@ -81,15 +81,15 @@ export class GamePlayViewModel extends next2d.fw.ViewModel
                     textFormat.font  = "Arial";
                     textFormat.size  = 40;
                     textFormat.bold  = true;
-                    textFormat.color = "#ffffff";
+                    textFormat.color = "#7EA1C4";
 
                     const textField = new TextField();
                     textField.defaultTextFormat = textFormat;
-
-                    textField.name      = "score";
-                    textField.autoSize  = TextFieldAutoSize.CENTER;
-                    textField.thickness = 3;
-                    textField.text      = "0";
+                    textField.name              = "score";
+                    textField.autoSize          = TextFieldAutoSize.CENTER;
+                    textField.thickness         = 3;
+                    textField.thicknessColor    = "#1B365C";
+                    textField.text              = "0";
 
                     textField.x = (this.config.stage.width - textField.width) / 2;
                     textField.y = 40;

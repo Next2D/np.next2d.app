@@ -49,7 +49,7 @@ export class HomeViewModel extends next2d.fw.ViewModel
                 // ボタンの角丸矩形を生成
                 sprite
                     .graphics
-                    .beginFill("#e6159c")
+                    .beginFill("#7EA1C4")
                     .drawRoundRect(0, 0, 50, 50, 10);
 
                 sprite.x = positionX;
@@ -59,6 +59,7 @@ export class HomeViewModel extends next2d.fw.ViewModel
                 textFormat.font  = "Arial";
                 textFormat.size  = 20;
                 textFormat.bold  = true;
+                textFormat.color = "#1B365C";
 
                 // 倍数をテキストとして表示
                 const textField = new TextField();
@@ -89,6 +90,31 @@ export class HomeViewModel extends next2d.fw.ViewModel
             parent.y = (this.config.stage.height - parent.height) / 2;
 
             resolve();
-        });
+        })
+            .then(() =>
+            {
+                return new Promise((resolve) =>
+                {
+                    const { TextField, TextFormat } = next2d.text;
+
+                    const textFormat = new TextFormat();
+                    textFormat.font  = "Arial";
+                    textFormat.size  = 12;
+                    textFormat.color = "#1B365C";
+
+                    const textField = view.addChild(new TextField());
+                    textField.defaultTextFormat = textFormat;
+
+                    textField.wordWrap  = true;
+                    textField.multiline = true;
+                    textField.text = "タップした数字の倍数を作る事で得点が加算され、タイムバーが回復します。";
+
+                    textField.width = 220;
+                    textField.x = (this.config.stage.width - 220) / 2;
+                    textField.y = 370;
+
+                    resolve();
+                });
+            });
     }
 }

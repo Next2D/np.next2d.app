@@ -30,7 +30,7 @@ export class Background extends next2d.fw.Model
                 .graphics
                 .beginGradientFill(
                     GradientType.LINEAR,
-                    ["#1461A0", "#ffffff"],
+                    ["#7EA1C4", "#ffffff"],
                     [0.6, 1],
                     [0, 255],
                     matrix
