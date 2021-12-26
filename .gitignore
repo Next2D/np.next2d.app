@@ -8,3 +8,4 @@ yarn-debug.log*
 yarn-error.log*
 src/config/Config.js
 src/Packages.js
+dist
