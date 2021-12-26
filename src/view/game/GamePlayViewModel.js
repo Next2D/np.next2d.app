@@ -115,6 +115,33 @@ export class GamePlayViewModel extends next2d.fw.ViewModel
 
                     resolve();
                 });
+            })
+            .then(() =>
+            {
+                return new Promise((resolve) =>
+                {
+                    const {
+                        TextField,
+                        TextFieldAutoSize,
+                        TextFormat
+                    } = next2d.text;
+
+                    const textFormat = new TextFormat();
+                    textFormat.font  = "Arial";
+                    textFormat.size  = 12;
+                    textFormat.color = "#1B365C";
+
+                    const textField = new TextField();
+                    textField.defaultTextFormat = textFormat;
+                    textField.autoSize          = TextFieldAutoSize.CENTER;
+                    textField.text              = `${this.query.get("number")}の倍数を作りましょう`;
+
+                    textField.x = (this.config.stage.width - textField.width) / 2;
+                    textField.y = 135;
+
+                    view.addChild(textField);
+                    resolve();
+                });
             });
     }
 }
