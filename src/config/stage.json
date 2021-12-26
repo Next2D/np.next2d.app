@@ -4,6 +4,6 @@
   "fps": 24,
   "options": {
     "base": ".",
-    "fullScreen": false
+    "fullScreen": true
   }
 }
