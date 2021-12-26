@@ -313,16 +313,18 @@ export class Logic extends next2d.fw.Model
      */
     startTimer (content)
     {
-        // 60秒で終了するよう設定
-        const width    = content.bar.width;
-        this.maxX      = content.bar.x;
-        this.subNumber = width / this.config.game.timeLimit;
+        const width = content.bar.width;
+        this.maxX   = content.bar.x;
+
+        // 幅をタイムアウト時間で分割する
+        this.subNumber = width
+            / (this.config.game.timeLimit
+            * (this.query.get("number") | 0));
 
         // タイマースタート
         const timerId = setInterval(function ()
         {
             content.bar.x -= this.subNumber;
-
             if (Math.abs(content.bar.x) > width) {
 
                 // ゲーム終了
