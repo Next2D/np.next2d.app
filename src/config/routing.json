@@ -1,0 +1,24 @@
+{
+  "top": {
+    "requests": [
+      {
+        "type": "content",
+        "path": "{{ content.endPoint }}content/opening.json",
+        "name": "OpeningContent",
+        "cache": true
+      }
+    ]
+  },
+  "home": null,
+  "game/play": {
+    "requests": [
+      {
+        "type": "content",
+        "path": "{{ content.endPoint }}content/material.json",
+        "name": "MaterialContent",
+        "cache": true
+      }
+    ]
+  },
+  "game/result": null
+}

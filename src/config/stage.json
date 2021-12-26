@@ -1,0 +1,9 @@
+{
+  "width": 320,
+  "height": 568,
+  "fps": 24,
+  "options": {
+    "base": ".",
+    "fullScreen": false
+  }
+}

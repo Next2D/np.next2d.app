@@ -1,0 +1,27 @@
+{
+  "local": {
+    "content": {
+      "endPoint": "/"
+    }
+  },
+  "prd": {
+    "content": {
+      "endPoint": "assets/json/"
+    }
+  },
+  "all": {
+    "spa": true,
+    "loading": {
+      "callback": "Loading"
+    },
+    "gotoView": {
+      "callback": ["callback.Background"]
+    },
+    "game": {
+      "timeLimit": 60,
+      "numbers": [2, 3, 4, 5, 6, 7, 8, 9],
+      "space": 10,
+      "piece": 5
+    }
+  }
+}
