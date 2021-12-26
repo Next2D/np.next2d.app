@@ -15,7 +15,7 @@ module.exports = {
     },
     "output": {
         "filename": "app.js",
-        "path": path.join(__dirname, "/dist")
+        "path": path.join(__dirname, "/docs/assets/js/")
     },
     "module": {
         "rules": [{
@@ -25,9 +25,9 @@ module.exports = {
     },
     "plugins": [
         // If you use eslint, please uncomment it.
-        // new ESLintPlugin({
-        //     "fix": true
-        // }),
+        new ESLintPlugin({
+            "fix": true
+        }),
         new Next2DWebpackAutoLoaderPlugin(env(), { "LICENSE": false })
     ],
     "devServer": {
