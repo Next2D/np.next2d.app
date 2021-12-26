@@ -299,7 +299,7 @@ export class Logic extends next2d.fw.Model
 
                 // 結果画面にシーン移動
                 this.app.gotoView(
-                    `game/result?score=${this.config.view.score.text}`
+                    `game/result?score=${this.context.view.score.text}`
                 );
 
             }
