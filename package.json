@@ -13,7 +13,7 @@
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@next2d/env": "1.0.1",
-    "@next2d/framework": "0.2.6",
+    "@next2d/framework": "1.0.0",
     "@next2d/player": "1.4.15",
     "@next2d/webpack-auto-loader-plugin": "1.2.1",
     "eslint": "^8.3.0",
